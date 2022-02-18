@@ -1,0 +1,41 @@
+name: test
+
+on:
+  push:
+    paths-ignore:
+      - '**.md'
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+
+  initial:
+    strategy:
+      matrix:
+        os: [ ubuntu-latest, macos-latest ]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v2
+      - uses: ./
+        id: action
+        with:
+          cache: workflow
+          tools: sinatra
+      - run: gem list | grep -C999 sinatra
+      - run: test "${{ steps.action.outputs.cache-hit }}" != true
+
+  cached:
+    needs: initial
+    strategy:
+      matrix:
+        os: [ ubuntu-latest, macos-latest ]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v2
+      - uses: ./
+        id: action
+        with:
+          cache: workflow
+          tools: sinatra
+      - run: gem list | grep -C999 sinatra
+      - run: test "${{ steps.action.outputs.cache-hit }}" == true
