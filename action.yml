@@ -18,9 +18,10 @@ runs:
       run: |
         : setup use-ruby-tools
         given_key="${{ inputs.key }}"
-        version_key="$( (ruby --version; gem --version) | (md5sum||md5) | awk '{print $1}' )"
+        installer="gem install --no-document"
+        version_key="$( (ruby --version; gem --version; echo -- $installer) | (md5sum||md5) | awk '{print $1}' )"
         key="${given_key:+$given_key-}${version_key}"
-        echo "::set-output name=command::gem install"
+        echo "::set-output name=command::$installer"
         echo "::set-output name=prefix::$(gem environment gemdir)"
         echo "::set-output name=key::$key"
 
