@@ -1,9 +1,10 @@
 name: install/cache ruby tools
 
 inputs:
-  tools: { required: false, type: string }
-  cache: { required: false, type: string, default: yes }
-  key:   { required: false, type: string }
+  tools:    { required: false, type: string }
+  cache:    { required: false, type: string, default: yes }
+  key:      { required: false, type: string }
+  document: { required: false, type: string, default: false }
 
 outputs:
   cache-hit:
@@ -18,7 +19,8 @@ runs:
       run: |
         : setup use-ruby-tools
         given_key="${{ inputs.key }}"
-        installer="gem install --no-document"
+        installer="gem install"
+        [ "${{ inputs.document }}" = false ] && installer+=' --no-document'
         version_key="$( (ruby --version; gem --version; echo -- $installer) | (md5sum||md5) | awk '{print $1}' )"
         key="${given_key:+$given_key-}${version_key}"
         echo "::set-output name=command::$installer"

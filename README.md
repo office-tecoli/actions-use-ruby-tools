@@ -18,6 +18,9 @@ Installed files are taken by comparing directory before and after
 installation.  So it takes time to find them if many files are already
 installed before command execution.
 
+Document is not installed by default.  If you want to install
+document, set `document` parameter `true`;
+
 Output is same as
 [`@actions/cache`](https://github.com/actions/cache).
 
@@ -25,9 +28,10 @@ Output is same as
 
 ```yaml
 # inputs:
-#   tools: { required: true,  type: string }
-#   cache: { required: false, type: string, default: yes }
-#   key:   { required: false, type: string }
+#   tools:    { required: true,  type: string }
+#   cache:    { required: false, type: string, default: yes }
+#   key:      { required: false, type: string }
+#   document: { required: false, type: string, default: false }
 
 - uses: office-tecoli/actions-use-ruby-tools@v0
   with:
@@ -45,6 +49,10 @@ Output is same as
 
     # Additional cache key
     key: ''
+
+    # Document install
+    # Default: flase
+    document: ''
 ```
 
 ## Example
