@@ -1,6 +1,6 @@
 # actions-use-ruby-tools
 
-![actions-use-ruby-tools](https://github.com/office-tecoli/actions-use-ruby-tools/actions/workflows/test.yml/badge.svg)
+![actions-use-ruby-tools](https://github.com/tecoli-com/actions-use-ruby-tools/actions/workflows/test.yml/badge.svg)
 
 This GitHub action install ruby packages and cache them for later
 use.  When executed next time with same package list, and any other
@@ -33,7 +33,7 @@ Output is same as
 #   key:      { required: false, type: string }
 #   document: { required: false, type: string, default: false }
 
-- uses: office-tecoli/actions-use-ruby-tools@v0
+- uses: tecoli-com/actions-use-ruby-tools@v0
   with:
 
     # ruby packages
@@ -58,16 +58,16 @@ Output is same as
 ## Example
 
 ```yaml
-- uses: office-tecoli/actions-use-ruby-tools@v0
+- uses: tecoli-com/actions-use-ruby-tools@v0
   with:
     tools: sinatra
 ```
 
 ## See Also
 
-### [office-tecoli/actions](https://github.com/office-tecoli/actions)
+### [tecoli-com/actions](https://github.com/tecoli-com/actions)
 
-### [`@office-tecoli/actions-install-and-cache`](https://github.com/office-tecoli/actions-install-and-cache)
+### [`@tecoli-com/actions-install-and-cache`](https://github.com/tecoli-com/actions-install-and-cache)
 
 This action is just a glue for
-[`@actions-install-and-cache`](https://github.com/office-tecoli/actions-install-and-cache).
+[`@actions-install-and-cache`](https://github.com/tecoli-com/actions-install-and-cache).
