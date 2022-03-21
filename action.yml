@@ -2,8 +2,8 @@ name: install-and-cache ruby tools
 description: 'GitHub Action to install and cache Ruby tools'
 author: 'Office TECOLI, LLC'
 branding: 
-  color: 'orange'
-  icon: 'plus-square'
+  color: orange
+  icon:  type
 
 inputs:
   tools:    { required: false, type: string }
