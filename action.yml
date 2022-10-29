@@ -28,9 +28,11 @@ runs:
         [ "${{ inputs.document }}" = false ] && installer+=' --no-document'
         version_key="$( (ruby --version; gem --version; echo -- $installer) | (md5sum||md5) | awk '{print $1}' )"
         key="${given_key:+$given_key-}${version_key}"
-        echo "::set-output name=command::$installer"
-        echo "::set-output name=prefix::$(gem environment gemdir)"
-        echo "::set-output name=key::$key"
+        cat << END >> $GITHUB_OUTPUT
+        command=$installer
+        prefix=$(gem environment gemdir)
+        key=$key
+        END
 
     - id: update
       uses: tecoli-com/actions-install-and-cache@v0.4
