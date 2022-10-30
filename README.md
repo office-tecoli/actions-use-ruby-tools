@@ -33,7 +33,7 @@ Output is same as
 #   key:      { required: false, type: string }
 #   document: { required: false, type: string, default: false }
 
-- uses: tecoli-com/actions-use-ruby-tools@v0
+- uses: tecolicom/actions-use-ruby-tools@v1
   with:
 
     # ruby packages
@@ -58,7 +58,7 @@ Output is same as
 ## Example
 
 ```yaml
-- uses: tecoli-com/actions-use-ruby-tools@v0
+- uses: tecolicom/actions-use-ruby-tools@v1
   with:
     tools: sinatra
 ```
