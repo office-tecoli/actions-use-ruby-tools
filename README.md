@@ -1,6 +1,6 @@
 # actions-use-ruby-tools
 
-![actions-use-ruby-tools](https://github.com/tecoli-com/actions-use-ruby-tools/actions/workflows/test.yml/badge.svg)
+![actions-use-ruby-tools](https://github.com/tecolicom/actions-use-ruby-tools/actions/workflows/test.yml/badge.svg)
 
 This GitHub action install ruby packages and cache them for later
 use.  When executed next time with same package list, and any other
@@ -65,9 +65,9 @@ Output is same as
 
 ## See Also
 
-### [tecoli-com/actions](https://github.com/tecoli-com/actions)
+### [tecolicom/actions](https://github.com/tecolicom/actions)
 
-### [`@tecoli-com/actions-install-and-cache`](https://github.com/tecoli-com/actions-install-and-cache)
+### [`@tecolicom/actions-install-and-cache`](https://github.com/tecolicom/actions-install-and-cache)
 
 This action is just a glue for
-[`@actions-install-and-cache`](https://github.com/tecoli-com/actions-install-and-cache).
+[`@actions-install-and-cache`](https://github.com/tecolicom/actions-install-and-cache).
