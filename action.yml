@@ -15,7 +15,7 @@ outputs:
   cache-hit:
     value: ${{ steps.update.outputs.cache-hit }}
   key:
-    value: ${{ steps.update.outputs.key }}
+    value: ${{ steps.setup.outputs.key }}
 
 runs:
   using: composite

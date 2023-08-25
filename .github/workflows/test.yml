@@ -15,7 +15,7 @@ jobs:
         os: [ ubuntu-latest, macos-latest ]
     runs-on: ${{ matrix.os }}
     outputs:
-      brew-version: ${{ steps.action.outputs.key }}
+      key: ${{ steps.action.outputs.key }}
     steps:
       - uses: actions/checkout@v3
       - uses: ./
@@ -45,8 +45,8 @@ jobs:
           second_key="${{ steps.action.outputs.key }}"
           if [ "$first_key" = "$second_key" ]
           then
-            test "${{ steps.action.outputs.cache-hit }}" == true
+              test "${{ steps.action.outputs.cache-hit }}" == true
           else
-            error="Cache key does not match ($first_key != $second_key)"
-            echo "::warning ::$error"
+              error="Cache key does not match ($first_key != $second_key)"
+              echo "::warning ::$error"
           fi
