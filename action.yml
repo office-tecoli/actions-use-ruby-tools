@@ -26,7 +26,7 @@ runs:
         given_key="${{ inputs.key }}"
         installer="gem install"
         [ "${{ inputs.document }}" = false ] && installer+=' --no-document'
-        version_key="$( (ruby --version; gem --version; echo -- $installer) | (md5sum||md5) | awk '{print $1}' )"
+        version_key="$( (ruby --version; gem --version; echo -- $installer) | tee /dev/stderr | (md5sum||md5) | awk '{print $1}' )"
         key="${given_key:+$given_key-}${version_key}"
         sed 's/^ *//' << END >> $GITHUB_OUTPUT
             command=$installer
