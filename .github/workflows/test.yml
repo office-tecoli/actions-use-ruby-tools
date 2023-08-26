@@ -15,7 +15,7 @@ jobs:
         os: [ ubuntu-latest, macos-latest ]
     runs-on: ${{ matrix.os }}
     outputs:
-      key: ${{ steps.action.outputs.key }}
+      runtime: ${{ steps.action.outputs.runtime }}
     steps:
       - uses: actions/checkout@v3
       - uses: ./
@@ -41,12 +41,12 @@ jobs:
           tools: sinatra
       - run: gem list | grep -C999 sinatra
       - run: |
-          first_key="${{ needs.initial.outputs.key }}"
-          second_key="${{ steps.action.outputs.key }}"
-          if [ "$first_key" = "$second_key" ]
+          cache_sig="${{ needs.initial.outputs.runtime }}"
+          current_sig="${{ steps.action.outputs.runtime }}"
+          if [ "$cache_sig" = "$current_sig" ]
           then
               test "${{ steps.action.outputs.cache-hit }}" == true
           else
-              error="Cache key does not match ($first_key != $second_key)"
+              error="Run-time signature does not match ($cache_sig != $current_sig)"
               echo "::warning ::$error"
           fi
