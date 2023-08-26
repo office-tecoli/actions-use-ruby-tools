@@ -1,4 +1,4 @@
-name: test
+name: test for macos
 
 on:
   push:
@@ -10,10 +10,7 @@ on:
 jobs:
 
   initial:
-    strategy:
-      matrix:
-        os: [ ubuntu-latest, macos-latest ]
-    runs-on: ${{ matrix.os }}
+    runs-on: macos-latest
     outputs:
       runtime: ${{ steps.action.outputs.runtime }}
     steps:
@@ -28,10 +25,7 @@ jobs:
 
   cached:
     needs: initial
-    strategy:
-      matrix:
-        os: [ ubuntu-latest, macos-latest ]
-    runs-on: ${{ matrix.os }}
+    runs-on: macos-latest
     steps:
       - uses: actions/checkout@v3
       - uses: ./

@@ -1,0 +1,46 @@
+name: test for ubuntu
+
+on:
+  push:
+    paths-ignore:
+      - '**.md'
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+
+  initial:
+    runs-on: ubuntu-latest
+    outputs:
+      runtime: ${{ steps.action.outputs.runtime }}
+    steps:
+      - uses: actions/checkout@v3
+      - uses: ./
+        id: action
+        with:
+          cache: workflow
+          tools: sinatra
+      - run: gem list | grep -C999 sinatra
+      - run: test "${{ steps.action.outputs.cache-hit }}" != true
+
+  cached:
+    needs: initial
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: ./
+        id: action
+        with:
+          cache: workflow
+          tools: sinatra
+      - run: gem list | grep -C999 sinatra
+      - run: |
+          cache_sig="${{ needs.initial.outputs.runtime }}"
+          current_sig="${{ steps.action.outputs.runtime }}"
+          if [ "$cache_sig" = "$current_sig" ]
+          then
+              test "${{ steps.action.outputs.cache-hit }}" == true
+          else
+              error="Run-time signature does not match ($cache_sig != $current_sig)"
+              echo "::warning ::$error"
+          fi
