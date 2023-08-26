@@ -33,7 +33,7 @@ runs:
         sed 's/^ *//' << END >> $GITHUB_OUTPUT
             command=$installer
             prefix=$(gem environment gemdir)
-            key=$key
+            key=$version_key
         END
 
     - id: update
