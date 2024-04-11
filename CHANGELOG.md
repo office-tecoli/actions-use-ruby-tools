@@ -1,3 +1,7 @@
+## v1.2
+
+- introduce "runtime" output for debug
+
 ## v1.1
 
 - Version 1.1
